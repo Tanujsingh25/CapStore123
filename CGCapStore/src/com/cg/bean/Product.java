@@ -1,6 +1,15 @@
 package com.cg.bean;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Product {
+	@Id
 	private String product_id;
 	private String product_name;
 	private String description;
@@ -11,7 +20,29 @@ public class Product {
 	private int avail_stock;
 	private float discount;
 	private int no_of_views;
-	public Product() {	}
+
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+	private List<Review> reviews;
+	
+	public Product() {
+	}
+	
+	public Product(String product_id, String product_name, String description, double price, String category,
+			String subcategory, int sold_quantity, int avail_stock, float discount, int no_of_views,
+			List<Review> reviews) {
+		super();
+		this.product_id = product_id;
+		this.product_name = product_name;
+		this.description = description;
+		this.price = price;
+		this.category = category;
+		this.subcategory = subcategory;
+		this.sold_quantity = sold_quantity;
+		this.avail_stock = avail_stock;
+		this.discount = discount;
+		this.no_of_views = no_of_views;
+		this.reviews = reviews;
+	}
 	
 	public Product(String product_id, String product_name, String description, double price, String category,
 			String subcategory, int sold_quantity, int avail_stock, float discount, int no_of_views) {
@@ -181,7 +212,4 @@ public class Product {
 				+ sold_quantity + ", avail_stock=" + avail_stock + ", discount=" + discount + ", no_of_views="
 				+ no_of_views + "]";
 	}
-	
-	
-	
 }

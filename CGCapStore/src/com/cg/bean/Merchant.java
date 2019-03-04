@@ -1,6 +1,12 @@
 package com.cg.bean;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Merchant {
+	@Id
+	private String merchant_id;
 	private String merchant_name;
 	private String email;
 	private String contact;
@@ -14,6 +20,19 @@ public class Merchant {
 	public Merchant(String merchant_name, String email, String contact, String password, String enc_password,
 			String merchant_type, String address) {
 		super();
+		this.merchant_name = merchant_name;
+		this.email = email;
+		this.contact = contact;
+		this.password = password;
+		this.enc_password = enc_password;
+		this.merchant_type = merchant_type;
+		this.address = address;
+	}
+
+	public Merchant(String merchant_id, String merchant_name, String email, String contact, String password,
+			String enc_password, String merchant_type, String address) {
+		super();
+		this.merchant_id = merchant_id;
 		this.merchant_name = merchant_name;
 		this.email = email;
 		this.contact = contact;
@@ -145,6 +164,5 @@ public class Merchant {
 		return "Merchant [merchant_name=" + merchant_name + ", email=" + email + ", contact=" + contact + ", password="
 				+ password + ", enc_password=" + enc_password + ", merchant_type=" + merchant_type + ", address="
 				+ address + "]";
-	}
-	
+	}	
 }
