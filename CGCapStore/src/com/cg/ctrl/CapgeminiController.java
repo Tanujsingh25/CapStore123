@@ -1,6 +1,5 @@
 package com.cg.ctrl;
 import java.util.List;
-
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,9 +8,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import com.cg.bean.Merchant;
 import com.cg.bean.User_details;
 import com.cg.service.CapstoreService;
-import com.cg.service.CapstoreServiceImpl;
 @Controller
 public class CapgeminiController {
 	@Autowired
@@ -33,21 +32,23 @@ public class CapgeminiController {
 	
 	@RequestMapping(value="displayAdmin",method=RequestMethod.POST)
 	public String showAdminPage(Model model,@ModelAttribute(value="user") @Valid User_details user,BindingResult result) {
-		System.out.println("user email is :"+user.getEmail());
+		System.out.println("user details");
+		System.out.println("are :-......................."+user.toString());
 		User_details user_details = capstoreService.findByEmail(user.getEmail());
-		System.out.println("user details is :"+user_details);
-		System.out.println("user details is :"+user_details.getUser_type());
 		model.addAttribute("userdetail",user_details);
 		if(user_details.getUser_type().equals("Admin")) {
 			List<User_details> customerDetails = capstoreService.getAllCustomers();
-			capstoreService.
+			System.out.println("customer details are: .............."+customerDetails);
+			for (User_details customer : customerDetails)
+				customer.setAddress(capstoreService.getCustomerAddress(customer.getUser_id()));
+			//System.out.println(customerDetails);
 			model.addAttribute("allCustomers",customerDetails);
-			model.addAttribute("ThirdPartyMerchant",capstoreService.getAllThirdPartyMerchants());
-			model.addAttribute("inHouseMerchant", capstoreService.getAllInHouseMerchants());
+			List<Merchant> thirdMerchant = capstoreService.getAllThirdPartyMerchants();
+			model.addAttribute("ThirdPartyMerchant",thirdMerchant);
+			List<Merchant> inHouseMerchant = capstoreService.getAllInHouseMerchants();
+			model.addAttribute("inHouseMerchants", inHouseMerchant);
 			return "adminPage";
 		}
 		return "Error";
 	}
-
-
 }

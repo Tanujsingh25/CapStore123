@@ -5,14 +5,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel ="stylesheet" href ="css/style.css" /> 
 <title>Login</title>
 </head>
 <body>
+<div class="header1">Login Capstore</div>
 	<f:form action="displayAdmin.obj" method="post" modelAttribute="user" >
 		<f:input path="email" placeholder="email" />
 		<f:input path="password" placeholder="password"/>
 		<input type="submit" value="login" >
-	</f:form>
-	<!-- <a href="displayLoginPage.obj" >Admin</a>	 -->
+	</f:form><br><br>
+	<a href="displayAdmin.obj" >Admin</a>
 </body>
 </html>

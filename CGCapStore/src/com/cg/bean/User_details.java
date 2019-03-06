@@ -5,6 +5,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -27,7 +28,7 @@ public class User_details {
 	@NotEmpty
 	private String user_type;
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)//,fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	private List<Address> address;
 
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
@@ -49,6 +50,46 @@ public class User_details {
 		this.password = password;
 		this.enc_password = enc_password;
 		this.user_type = user_type;
+	}
+
+	public String getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+
+	public List<Address> getAddress() {
+		return address;
+	}
+
+	public void setAddress(List<Address> address) {
+		this.address = address;
+	}
+
+/*	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}*/
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
+	public Wishlist getWishlist() {
+		return wishlist;
+	}
+
+	public void setWishlist(Wishlist wishlist) {
+		this.wishlist = wishlist;
 	}
 
 	public String getEmail() {

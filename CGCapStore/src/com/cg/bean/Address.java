@@ -21,6 +21,14 @@ public class Address {
 	@JoinColumn(name = "user_id")
 	private User_details user;
 
+	public User_details getUser() {
+		return user;
+	}
+
+	public void setUser(User_details user) {
+		this.user = user;
+	}
+
 	public Address() {
 	}
 

@@ -6,16 +6,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel ="stylesheet" href ="css/style.css" /> 
 <title>Admin Page</title>
 </head>
 <body>
-	<table>
+<h3 style="background-color: teal" class="header1" >Customers</h3>
+<div align="center" class="personal1" >
+	<table class="table" border="2" >
 		<thead>
-			<td>First Name</td>
-			<td>Last Name</td>
-			<td>Email Id</td>
-			<td>Contact No</td>
-			<td>Address</td>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Email Id</th>
+			<th>Contact No</th>
+			<th>Address</th>
 		</thead>
 		<tbody>
 			<j:forEach var="customer" items="${allCustomers}">
@@ -25,18 +28,21 @@
 					<td>${customer.email}</td>
 					<td>${customer.contact}</td>
 					<td><j:forEach var="address" items="${customer.address}" >
-					${address.address_line1} , ${address.area}, ${address.city}, ${address.country}
-					</j:forEach></td> 
+					${address.address_line1} , ${address.area}, ${address.city}, ${address.country} <br>
+					</j:forEach></td>
 				</tr>
 			</j:forEach>
 		</tbody>
-	</table><br>
-	<table>
+	</table>
+	</div><br><br>
+<h3 style="background-color: teal"  class="header1" >Third Party Merchant</h3>
+<div align="center" class="personal1" >
+	<table class="table" border="2" >
 		<thead>
-			<td>First Name</td>
-			<td>Email Id</td>
-			<td>Contact No</td>
-			<td>Address</td>
+			<th>First Name</th>
+			<th>Email Id</th>
+			<th>Contact No</th>
+			<th>Address</th>
 		</thead>
 		<tbody>
 			<j:forEach var="thirdMerchant" items="${ThirdPartyMerchant}">
@@ -49,8 +55,27 @@
 			</j:forEach>
 		</tbody>
 	</table>
-    
-    </div>
-    </div>
+	</div><br><br>
+<h3 style="background-color: teal" class="header1" >In House Merchant</h3>
+<div align="center" class="personal1" >
+	<table class="table" border="2">
+		<thead>
+			<th>First Name</th>
+			<th>Email Id</th>
+			<th>Contact No</th>
+			<th>Address</th>
+		</thead>
+		<tbody>
+			<j:forEach var="inHouseMerchant" items="${inHouseMerchants}">
+				<tr>
+					<td>${inHouseMerchant.merchant_name}</td>
+					<td>${inHouseMerchant.email}</td>
+					<td>${inHouseMerchant.contact}</td>
+					<td>${inHouseMerchant.address}</td> 
+				</tr>
+			</j:forEach>
+		</tbody>
+	</table>
+	</div><br><br>
 </body>
 </html>

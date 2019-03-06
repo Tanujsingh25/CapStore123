@@ -1,8 +1,11 @@
 package com.cg.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.cg.bean.Address;
 import com.cg.bean.Merchant;
 import com.cg.bean.User_details;
 import com.cg.dao.CapstoreDao;
@@ -22,6 +25,7 @@ public class CapstoreServiceImpl implements CapstoreService{
 	}
 	@Override
 	public User_details findByEmail(String email) {
+		//System.out.println("service..............."+capstoreDao.findByEmail(email));
 		return capstoreDao.findByEmail(email);
 	}
 	@Override
@@ -35,6 +39,13 @@ public class CapstoreServiceImpl implements CapstoreService{
 	@Override
 	public List<Merchant> getAllInHouseMerchants() {
 		return capstoreDao.getAllInHouseMerchants();
+	}
+	@Override
+	public List<Address> getCustomerAddress(String user_id) {
+		/*ArrayList<Address> addressList = new ArrayList<>();
+		addressList.add(capstoreDao.getCustomerAddress(user_id));
+		System.out.println("service list "+addressList);*/
+		return capstoreDao.getCustomerAddress(user_id);
 	}
 	
 }
